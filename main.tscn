@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cwnpjse6rmbv6"]
+
+[ext_resource type="Script" uid="uid://600mcvcgupf7" path="res://Main.cs" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://4otktse524el" path="res://Archetype/Archer/archer.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node" unique_id=1494482777]
+script = ExtResource("1_ig7tw")
+archerScene = ExtResource("2_0xm2m")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1607555945]

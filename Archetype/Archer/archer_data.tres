@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://b5bqelmjhm170"]
+
+[ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="1_0sudh"]
+
+[resource]
+script = ExtResource("1_0sudh")
+strengths = Array[int]([1, 4])
+weaknesses = Array[int]([2, 3])
+buffnerfs = Dictionary[int, int]({
+0: 0,
+1: 1,
+4: 0
+})
+metadata/_custom_type_script = "uid://8hp3gx5gva5x"
