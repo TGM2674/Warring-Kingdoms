@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://byju1ft3mdhjx" path="res://AI/AI.cs" id="1_ap2fa"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap2fa"]
+bg_color = Color(1, 0, 0.078431375, 1)
+
 [node name="AI" type="Node" unique_id=2029156998 node_paths=PackedStringArray("nameLabel", "healthBar")]
 script = ExtResource("1_ap2fa")
 nameLabel = NodePath("ProgressBar/Label")
@@ -13,6 +16,7 @@ heldUnits = Array[int]([1, 2, 4])
 offset_left = -163.0
 offset_right = 167.0
 offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ap2fa")
 
 [node name="Label" type="Label" parent="ProgressBar" unique_id=622184469]
 layout_mode = 0

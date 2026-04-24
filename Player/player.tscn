@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cvi501nidv26c" path="res://Player/Player.cs" id="1_l8h54"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8h54"]
+bg_color = Color(1, 0, 0.078431375, 1)
+
 [node name="Player" type="Node" unique_id=234934106 node_paths=PackedStringArray("nameLabel", "healthBar")]
 script = ExtResource("1_l8h54")
 nameLabel = NodePath("ProgressBar/Label")
@@ -11,6 +14,7 @@ healthBar = NodePath("ProgressBar")
 offset_left = -163.0
 offset_right = 167.0
 offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_l8h54")
 
 [node name="Label" type="Label" parent="ProgressBar" unique_id=1401651796]
 layout_mode = 0
