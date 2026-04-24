@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bkin0o3omyofn"]
+
+[ext_resource type="Texture2D" uid="uid://dlo4cfmgojaqp" path="res://Archetype/Swordsmen/Swordsmen.png" id="1_m85sp"]
+[ext_resource type="Script" uid="uid://decs588qk5x10" path="res://Archetype/Swordsmen/Swordsmen.cs" id="2_8nwpv"]
+
+[node name="Archer" type="Sprite2D" unique_id=256426055]
+position = Vector2(48, 48)
+scale = Vector2(4, 4)
+texture = ExtResource("1_m85sp")
+script = ExtResource("2_8nwpv")

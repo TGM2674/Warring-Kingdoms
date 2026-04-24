@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_g1o7r")
 UnitScene = ExtResource("1_61deu")
-damage = 75.0
+damage = 100.0
 strengths = Array[int]([2, 5])
 weaknesses = Array[int]([4, 3])
 buffnerfs = Dictionary[int, int]({

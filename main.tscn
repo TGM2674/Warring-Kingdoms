@@ -5,9 +5,11 @@
 [ext_resource type="Script" uid="uid://mxo0f6a0am0k" path="res://Archetype/UnitRegistry.cs" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://4x5lyxjs47d5" path="res://AI/ai.tscn" id="3_kek77"]
 [ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="4_5vw27"]
-[ext_resource type="Resource" uid="uid://b5bqelmjhm170" path="res://Archetype/Archers/archer_data.tres" id="5_kek77"]
 [ext_resource type="Resource" uid="uid://dfwnttlwmwivw" path="res://Archetype/Cavalries/cavalries_data.tres" id="6_4c57u"]
 [ext_resource type="Resource" uid="uid://dtc1bsw4y5dd7" path="res://Archetype/Spearsmen/spearsmen_data.tres" id="7_efxa6"]
+[ext_resource type="Resource" uid="uid://bhfs7a112pqp8" path="res://Archetype/Mages/mages_data.tres" id="9_4c57u"]
+[ext_resource type="Resource" uid="uid://ib3ma5px6rq3" path="res://Archetype/Swordsmen/swordsmen_data.tres" id="10_dg77c"]
+[ext_resource type="Resource" uid="uid://b5bqelmjhm170" path="res://Archetype/Archers/archer_data.tres" id="10_efxa6"]
 
 [node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4")]
 script = ExtResource("1_ig7tw")
@@ -20,7 +22,7 @@ p4 = NodePath("P4")
 
 [node name="UnitRegistry" type="Node" parent="." unique_id=982062273]
 script = ExtResource("3_272bh")
-units = Array[ExtResource("4_5vw27")]([ExtResource("5_kek77"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
+units = Array[ExtResource("4_5vw27")]([ExtResource("10_efxa6"), ExtResource("6_4c57u"), ExtResource("7_efxa6"), ExtResource("9_4c57u"), ExtResource("10_dg77c")])
 metadata/_custom_type_script = "uid://mxo0f6a0am0k"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1607555945]

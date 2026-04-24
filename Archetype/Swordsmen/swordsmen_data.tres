@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://ib3ma5px6rq3"]
+
+[ext_resource type="PackedScene" uid="uid://bkin0o3omyofn" path="res://Archetype/Swordsmen/swordsmen.tscn" id="1_ainym"]
+[ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="2_hut42"]
+
+[resource]
+script = ExtResource("2_hut42")
+UnitScene = ExtResource("1_ainym")
+unitName = 3
+damage = 100.0
+strengths = Array[int]([2, 1])
+weaknesses = Array[int]([4, 5])
+buffnerfs = Dictionary[int, int]({
+0: 0,
+1: 1,
+2: 1,
+3: 0,
+4: 0
+})
+metadata/_custom_type_script = "uid://8hp3gx5gva5x"

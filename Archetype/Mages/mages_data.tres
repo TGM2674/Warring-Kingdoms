@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://bhfs7a112pqp8"]
+
+[ext_resource type="PackedScene" uid="uid://1lrgk5mrn7av" path="res://Archetype/Mages/mages.tscn" id="1_1xo33"]
+[ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="2_qy53r"]
+
+[resource]
+script = ExtResource("2_qy53r")
+UnitScene = ExtResource("1_1xo33")
+unitName = 5
+damage = 100.0
+strengths = Array[int]([3, 4])
+weaknesses = Array[int]([1, 2])
+buffnerfs = Dictionary[int, int]({
+0: 0,
+1: 1,
+2: 1,
+3: 0,
+4: 0
+})
+metadata/_custom_type_script = "uid://8hp3gx5gva5x"

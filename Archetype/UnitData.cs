@@ -10,7 +10,7 @@ public partial class UnitData : Resource
 	[Export]
 	public Units.Type unitName = Units.Type.Archers;
 	[Export]
-	public float damage = 100;
+	public float damage = 1000;
 	[Export]
 	public Godot.Collections.Array<Units.Type> strengths = new();
 	[Export]

@@ -7,7 +7,7 @@
 script = ExtResource("1_frks8")
 UnitScene = ExtResource("1_dcis2")
 unitName = 2
-damage = 50.0
+damage = 100.0
 strengths = Array[int]([4, 5])
 weaknesses = Array[int]([3, 1])
 metadata/_custom_type_script = "uid://8hp3gx5gva5x"

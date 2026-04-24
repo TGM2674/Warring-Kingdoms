@@ -31,6 +31,9 @@ public partial class Main : Node
         
         player1.SetName("Player");
         player2.SetName("Enemy");
+
+        player1.playerIndex = 1;
+        player2.playerIndex = 2;
         
         player1.healthBar.GlobalPosition = p3.GlobalPosition;
         player2.healthBar.GlobalPosition = p4.GlobalPosition;
@@ -89,6 +92,11 @@ public partial class Main : Node
         p2Unit.FlipH = true;
 
         waitTimer = 0;
+
+        // Roll all modifiers for this round
+        Modifiers.AdvanceDayNight();
+        Modifiers.RollWeather();
+        Modifiers.RollTerrain();
         
         player1.TakeDamageFrom(player2Unit);
         player2.TakeDamageFrom(player1Unit);

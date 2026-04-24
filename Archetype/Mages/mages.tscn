@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://1lrgk5mrn7av"]
+
+[ext_resource type="Texture2D" uid="uid://ce3sscikanb3w" path="res://Test.png" id="1_8wyow"]
+[ext_resource type="Script" uid="uid://27hlwia6bgxs" path="res://Archetype/Mages/Mages.cs" id="2_ilffr"]
+
+[node name="Archer" type="Sprite2D" unique_id=256426055]
+texture = ExtResource("1_8wyow")
+script = ExtResource("2_ilffr")
