@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bdh104t02gjgb"]
+
+[ext_resource type="Texture2D" uid="uid://ce3sscikanb3w" path="res://Test.png" id="1_wr8l7"]
+[ext_resource type="Script" uid="uid://dmhcuxefkh73m" path="res://Archetype/Spearsmen/Spearsmen.cs" id="2_ni8gh"]
+
+[node name="Spearmen" type="Sprite2D" unique_id=1193262452]
+self_modulate = Color(0, 1, 0, 1)
+texture = ExtResource("1_wr8l7")
+script = ExtResource("2_ni8gh")
+type = 1

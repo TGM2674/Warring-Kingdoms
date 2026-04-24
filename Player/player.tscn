@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cnng7m1moydpk"]
+
+[ext_resource type="Script" uid="uid://cvi501nidv26c" path="res://Player/Player.cs" id="1_l8h54"]
+
+[node name="Player" type="Node" unique_id=234934106 node_paths=PackedStringArray("nameLabel", "healthBar")]
+script = ExtResource("1_l8h54")
+nameLabel = NodePath("ProgressBar/Label")
+healthBar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=589728841]
+offset_left = -163.0
+offset_right = 167.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="ProgressBar" unique_id=1401651796]
+layout_mode = 0
+offset_top = -51.0
+offset_right = 330.0
+offset_bottom = -28.0
+text = "Player"
+horizontal_alignment = 1

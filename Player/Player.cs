@@ -1,60 +1,32 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
-public class Player : Node
+public partial class Player : UnitController
 {
-	public float health = 10000;
-    private int current = 0;
-    private int count = 0;
-    private bool forward = true;
-
-    private List<Main.Units> list = new List<Main.Units>
+    public override void ProcessTurn(double delta)
     {
-        Main.Units.Swordsmen,
-        Main.Units.Cavalries,
-        Main.Units.Spearsmen,
-        Main.Units.Archers,
-        Main.Units.Mages
-    };
-
-    public Main.Units GetNext()
-    {
-        return Cycle();
-        //return Switcher();
-        //return RandomChoice();
-    }
-
-    public Main.Units Cycle()
-    {
-        current++;
-        if (current >= list.Count) current = 0;
-        return list[current];
-    }
-
-    public Main.Units RandomChoice()
-    {
-        Random rand = new Random();
-        int r = rand.Next(list.Count);
-        return list[r];
-    }
-
-    public Main.Units Switcher()
-    {
-        count++;
-        if (count % 10 == 0)
+        if (Input.IsActionJustPressed("1"))
         {
-            forward = !forward;
+            chosenUnit = Units.Type.Archers;
+            Debug.Print(name + " Chose:");
+            Debug.Print(chosenUnit.ToString());
+            isReady = true;
         }
-
-        if (forward)
+        if (Input.IsActionJustPressed("2"))
         {
-            return Cycle();
+            chosenUnit = Units.Type.Cavalries;
+            Debug.Print(name + " Chose:");
+            Debug.Print(chosenUnit.ToString());
+            isReady = true;
         }
-        else
+        if (Input.IsActionJustPressed("3"))
         {
-            Cycle();
-            return Cycle();
+            chosenUnit = Units.Type.Spearsmen;
+            Debug.Print(name + " Chose:");
+            Debug.Print(chosenUnit.ToString());
+            isReady = true;
         }
     }
 }

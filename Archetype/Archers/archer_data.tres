@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://b5bqelmjhm170"]
+
+[ext_resource type="PackedScene" uid="uid://4otktse524el" path="res://Archetype/Archers/archer.tscn" id="1_61deu"]
+[ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="2_g1o7r"]
+
+[resource]
+script = ExtResource("2_g1o7r")
+UnitScene = ExtResource("1_61deu")
+damage = 75.0
+strengths = Array[int]([2, 5])
+weaknesses = Array[int]([4, 3])
+buffnerfs = Dictionary[int, int]({
+0: 0,
+1: 1,
+2: 1,
+3: 0,
+4: 0
+})
+metadata/_custom_type_script = "uid://8hp3gx5gva5x"

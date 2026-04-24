@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://4x5lyxjs47d5"]
+
+[ext_resource type="Script" uid="uid://byju1ft3mdhjx" path="res://AI/AI.cs" id="1_ap2fa"]
+
+[node name="AI" type="Node" unique_id=2029156998 node_paths=PackedStringArray("nameLabel", "healthBar")]
+script = ExtResource("1_ap2fa")
+nameLabel = NodePath("ProgressBar/Label")
+healthBar = NodePath("ProgressBar")
+isAI = true
+heldUnits = Array[int]([1, 2, 4])
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1475991740]
+offset_left = -163.0
+offset_right = 167.0
+offset_bottom = 27.0
+
+[node name="Label" type="Label" parent="ProgressBar" unique_id=622184469]
+layout_mode = 0
+offset_top = -51.0
+offset_right = 330.0
+offset_bottom = -28.0
+text = "Player"
+horizontal_alignment = 1

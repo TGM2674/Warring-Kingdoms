@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://dtc1bsw4y5dd7"]
+
+[ext_resource type="PackedScene" uid="uid://bdh104t02gjgb" path="res://Archetype/Spearsmen/spearsmen.tscn" id="1_dcis2"]
+[ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="1_frks8"]
+
+[resource]
+script = ExtResource("1_frks8")
+UnitScene = ExtResource("1_dcis2")
+unitName = 2
+damage = 50.0
+strengths = Array[int]([4, 5])
+weaknesses = Array[int]([3, 1])
+metadata/_custom_type_script = "uid://8hp3gx5gva5x"

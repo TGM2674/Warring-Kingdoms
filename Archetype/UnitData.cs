@@ -5,14 +5,16 @@ using System.Collections.Generic;
 [GlobalClass]
 public partial class UnitData : Resource
 {
+    [Export]
+    public PackedScene UnitScene = null;
 	[Export]
-	public Main.Units unitName { get; set; } = Main.Units.Archers;
+	public Units.Type unitName = Units.Type.Archers;
 	[Export]
-	public float damage { get; set; } = 100;
+	public float damage = 100;
 	[Export]
-	public Godot.Collections.Array<Main.Units> strengths { get; set; } = new Godot.Collections.Array<Main.Units>();
+	public Godot.Collections.Array<Units.Type> strengths = new();
 	[Export]
-	public Godot.Collections.Array<Main.Units> weaknesses { get; set; } = new Godot.Collections.Array<Main.Units>();
+	public Godot.Collections.Array<Units.Type> weaknesses = new();
 	[Export]
-	public Godot.Collections.Dictionary<Main.Modifiers, Main.ModifierEffects> buffnerfs { get; set; } = new Godot.Collections.Dictionary<Main.Modifiers, Main.ModifierEffects>();
+	public Godot.Collections.Dictionary<Modifiers.Type, Modifiers.Effects> buffnerfs = new();
 }

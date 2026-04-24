@@ -1,10 +1,38 @@
 [gd_scene format=3 uid="uid://cwnpjse6rmbv6"]
 
 [ext_resource type="Script" uid="uid://600mcvcgupf7" path="res://Main.cs" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://4otktse524el" path="res://Archetype/Archer/archer.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cnng7m1moydpk" path="res://Player/player.tscn" id="2_5vw27"]
+[ext_resource type="Script" uid="uid://mxo0f6a0am0k" path="res://Archetype/UnitRegistry.cs" id="3_272bh"]
+[ext_resource type="PackedScene" uid="uid://4x5lyxjs47d5" path="res://AI/ai.tscn" id="3_kek77"]
+[ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="4_5vw27"]
+[ext_resource type="Resource" uid="uid://b5bqelmjhm170" path="res://Archetype/Archers/archer_data.tres" id="5_kek77"]
+[ext_resource type="Resource" uid="uid://dfwnttlwmwivw" path="res://Archetype/Cavalries/cavalries_data.tres" id="6_4c57u"]
+[ext_resource type="Resource" uid="uid://dtc1bsw4y5dd7" path="res://Archetype/Spearsmen/spearsmen_data.tres" id="7_efxa6"]
 
-[node name="Main" type="Node" unique_id=1494482777]
+[node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4")]
 script = ExtResource("1_ig7tw")
-archerScene = ExtResource("2_0xm2m")
+playerScene = ExtResource("2_5vw27")
+aiScene = ExtResource("3_kek77")
+p1 = NodePath("P1")
+p2 = NodePath("P2")
+p3 = NodePath("P3")
+p4 = NodePath("P4")
+
+[node name="UnitRegistry" type="Node" parent="." unique_id=982062273]
+script = ExtResource("3_272bh")
+units = Array[ExtResource("4_5vw27")]([ExtResource("5_kek77"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
+metadata/_custom_type_script = "uid://mxo0f6a0am0k"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1607555945]
+
+[node name="P1" type="Marker2D" parent="." unique_id=1691225206]
+position = Vector2(-307, 0)
+
+[node name="P2" type="Marker2D" parent="." unique_id=978175513]
+position = Vector2(319, 0)
+
+[node name="P3" type="Marker2D" parent="." unique_id=1009224461]
+position = Vector2(-483, -232)
+
+[node name="P4" type="Marker2D" parent="." unique_id=539623943]
+position = Vector2(168, -232)
