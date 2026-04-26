@@ -72,7 +72,7 @@ public partial class DayNight : Node
         if (isTransitioning)
             return;
 
-        bool isDay = Modifiers.GetDayNight() == Modifiers.Type.Night;
+        bool isDay = Modifiers.GetDayNight() == Modifiers.Type.Day;
         skyStartColor = isDay ? dayColor : nightColor;
         skyTargetColor = isDay ? nightColor : dayColor;
 

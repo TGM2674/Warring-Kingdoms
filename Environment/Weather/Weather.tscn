@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c58nfsn7l7fpx"]
+
+[ext_resource type="Script" uid="uid://cwfk7keck067h" path="res://Environment/Weather/Weather.cs" id="1_m1dx1"]
+[ext_resource type="Texture2D" uid="uid://y87hciyf73ee" path="res://Environment/Weather/Raindrop.png" id="2_pv4kq"]
+[ext_resource type="Texture2D" uid="uid://bggqw0efoj42q" path="res://Environment/Weather/Snowflake.png" id="3_pv4kq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m1dx1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 1)
+direction = Vector3(1, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 98, 0)
+anim_speed_min = 200.0
+anim_speed_max = 300.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_481qr"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 1)
+direction = Vector3(1, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 98, 0)
+anim_speed_min = 200.0
+anim_speed_max = 300.0
+
+[node name="Weather" type="Node2D" unique_id=1654538707]
+script = ExtResource("1_m1dx1")
+rainPath = NodePath("Rain")
+snowPath = NodePath("Snow")
+
+[node name="Rain" type="GPUParticles2D" parent="." unique_id=2113969776]
+position = Vector2(0, -350)
+amount = 100
+texture = ExtResource("2_pv4kq")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_m1dx1")
+
+[node name="Snow" type="GPUParticles2D" parent="." unique_id=43863135]
+position = Vector2(0, -350)
+amount = 70
+texture = ExtResource("3_pv4kq")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_481qr")

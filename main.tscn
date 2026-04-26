@@ -12,8 +12,9 @@
 [ext_resource type="Resource" uid="uid://b5bqelmjhm170" path="res://Archetype/Archers/archer_data.tres" id="10_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dchmnke88ir2f" path="res://Environment/DayNight/Orbit.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bp1im8boiosyk" path="res://Environment/Terrain/Terrain.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://c58nfsn7l7fpx" path="res://Environment/Weather/Weather.tscn" id="13_ycdy4"]
 
-[node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4", "dayNight", "terrainPlayer", "terrainEnemy")]
+[node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4", "dayNight", "terrainPlayer", "terrainEnemy", "weather")]
 script = ExtResource("1_ig7tw")
 playerScene = ExtResource("2_5vw27")
 aiScene = ExtResource("3_kek77")
@@ -24,6 +25,7 @@ p4 = NodePath("P4")
 dayNight = NodePath("Orbit")
 terrainPlayer = NodePath("TerrainPlayer")
 terrainEnemy = NodePath("TerrainEnemy")
+weather = NodePath("Weather")
 
 [node name="UnitRegistry" type="Node" parent="." unique_id=982062273]
 script = ExtResource("3_272bh")
@@ -68,3 +70,5 @@ unitMarker = NodePath("../P1")
 unitMarker = NodePath("../P2")
 playerIndex = 2
 flipX = true
+
+[node name="Weather" parent="." unique_id=1654538707 instance=ExtResource("13_ycdy4")]

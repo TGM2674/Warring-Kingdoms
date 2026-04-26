@@ -16,7 +16,7 @@ public partial class UnitController : Node
     [Export] private bool isAI = false;
     public Memory aiMemory = null;
 
-    public int playerIndex = 1; // Set by Main.cs, determines which terrain to read
+    public int playerIndex = 1;
     
     [Export] private Godot.Collections.Array<Units.Type> heldUnits = new();
     private HashSet<Units.Type> heldUnitsInteral = new();
@@ -57,21 +57,15 @@ public partial class UnitController : Node
 
         float baseDamage = fromData.damage;
 
-        // Strength modifier
         float strengthModifier = 1.0f;
         if (UnitRegistry.IsStrongAgainst(from, chosenUnit))
             strengthModifier = 1.25f;
         else if (UnitRegistry.IsWeakAgainst(from, chosenUnit))
             strengthModifier = 0.75f;
 
-        // Day/Night modifier (global, reads attacker's unit data)
         float dayNightModifier = GetModifierValue(fromData, Modifiers.GetDayNight());
-
-        // Weather modifier (global, reads attacker's unit data)
         float weatherModifier = GetModifierValue(fromData, Modifiers.GetWeather());
 
-        // Terrain modifier (per attacker's side)
-        // Note: attacker is "from", so we read the opponent's terrain
         int attackerIndex = playerIndex == 1 ? 2 : 1;
         float terrainModifier = GetModifierValue(fromData, Modifiers.GetTerrain(attackerIndex));
 
@@ -80,7 +74,8 @@ public partial class UnitController : Node
         currentHealth -= totalDamage;
         healthBar.Value = currentHealth;
 
-        Debug.Print(name + " took " + totalDamage + " damage. ("
+        string attackerName = playerIndex == 1 ? "Enemy" : "Player";
+        Debug.Print(attackerName + " dealt " + totalDamage + " damage. ("
             + "Base: " + baseDamage
             + ", Strength: " + strengthModifier
             + ", DayNight: " + dayNightModifier

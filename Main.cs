@@ -16,6 +16,7 @@ public partial class Main : Node
     [Export] private DayNight dayNight = null;
     [Export] private Terrain terrainPlayer = null;
     [Export] private Terrain terrainEnemy = null;
+    [Export] private Weather weather = null;
 
     private Unit p1Unit = null;
     private Unit p2Unit = null;
@@ -50,6 +51,7 @@ public partial class Main : Node
 
         terrainPlayer.UpdateTerrain();
         terrainEnemy.UpdateTerrain();
+        weather.UpdateWeather();
     }
 
     public override void _Process(double delta)
@@ -67,12 +69,15 @@ public partial class Main : Node
                     player1.TakeDamageFrom(pendingPlayer2Unit);
                     player2.TakeDamageFrom(pendingPlayer1Unit);
                     damageApplied = true;
+
+                    // Reset AFTER damage is calculated
+                    player1.ResetChosenUnit();
+                    player2.ResetChosenUnit();
                 }
 
                 return;
             }
 
-            // Unit animation finished — free units and start planet transition
             if (p1Unit != null) { p1Unit.QueueFree(); p1Unit = null; }
             if (p2Unit != null) { p2Unit.QueueFree(); p2Unit = null; }
 
@@ -95,6 +100,7 @@ public partial class Main : Node
 
             terrainPlayer.UpdateTerrain();
             terrainEnemy.UpdateTerrain();
+            weather.UpdateWeather();
         }
 
         if (player1 == null || player2 == null)
@@ -144,9 +150,6 @@ public partial class Main : Node
         waitTimer = 0;
         roundActive = true;
 
-        player1.ResetChosenUnit();
-        player2.ResetChosenUnit();
-        
         player1.aiMemory.AddMove(player2Unit);
         player2.aiMemory.AddMove(player1Unit);
         
