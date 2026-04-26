@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://nbrqrsn5wgdd"]
+
+[ext_resource type="Texture2D" uid="uid://bhgoyj17welhs" path="res://Archetype/Spearsmen/Spearsmenatk.png" id="1_43rmf"]
+[ext_resource type="Script" uid="uid://dmhcuxefkh73m" path="res://Archetype/Spearsmen/Spearsmen.cs" id="2_rm27w"]
+
+[node name="Spearmen_atk" type="Sprite2D" unique_id=1193262452]
+scale = Vector2(4, 4)
+texture = ExtResource("1_43rmf")
+script = ExtResource("2_rm27w")

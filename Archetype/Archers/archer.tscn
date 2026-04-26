@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://4otktse524el"]
-
-[ext_resource type="Texture2D" uid="uid://ce3sscikanb3w" path="res://Test.png" id="1_vfond"]
-[ext_resource type="Script" uid="uid://ussvdrvdpl07" path="res://Archetype/Archers/Archers.cs" id="2_oxrba"]
-
-[node name="Archer" type="Sprite2D" unique_id=256426055]
-texture = ExtResource("1_vfond")
-script = ExtResource("2_oxrba")

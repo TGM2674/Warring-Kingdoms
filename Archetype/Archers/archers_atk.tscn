@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cc0tw8chp2r78"]
+
+[ext_resource type="Texture2D" uid="uid://dm5jd6pqpepl0" path="res://Archetype/Archers/Archersatk.png" id="1_fe4q0"]
+[ext_resource type="Script" uid="uid://ussvdrvdpl07" path="res://Archetype/Archers/Archers.cs" id="2_iq8a5"]
+
+[node name="Archers_atk" type="Sprite2D" unique_id=256426055]
+scale = Vector2(4, 4)
+texture = ExtResource("1_fe4q0")
+script = ExtResource("2_iq8a5")

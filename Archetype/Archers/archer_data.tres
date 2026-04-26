@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://b5bqelmjhm170"]
 
-[ext_resource type="PackedScene" uid="uid://4otktse524el" path="res://Archetype/Archers/archer.tscn" id="1_61deu"]
+[ext_resource type="PackedScene" uid="uid://cc0tw8chp2r78" path="res://Archetype/Archers/archers_atk.tscn" id="1_g1o7r"]
 [ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="2_g1o7r"]
+[ext_resource type="PackedScene" uid="uid://4otktse524el" path="res://Archetype/Archers/archers.tscn" id="2_iiaxa"]
 
 [resource]
 script = ExtResource("2_g1o7r")
-UnitScene = ExtResource("1_61deu")
+UnitScene = ExtResource("2_iiaxa")
+AttackScene = ExtResource("1_g1o7r")
 damage = 100.0
 strengths = Array[int]([2, 5])
 weaknesses = Array[int]([4, 3])

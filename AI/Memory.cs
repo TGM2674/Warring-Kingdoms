@@ -26,11 +26,11 @@ public class Memory
         }
     }
 
-    public Dictionary<Units.Type, float> GetWeights()
+    public Dictionary<Units.Type, float> GetPredictedUnits()
     {
         if (memory.Count <= LEN)
             return null;
-
+        
         List<Units.Type> previous = memory.Skip(memory.Count - LEN).Take(LEN).ToList();
 
         Dictionary<Units.Type, int> predictionCount = new();
@@ -76,50 +76,207 @@ public class Memory
         if (controller.GetHeldUnits().Count <= 0)
             return Units.Type.None;
         
-        Units.Type predictedUnit = Units.Type.None;
-        float  bestScore = -1;
+        Dictionary<Units.Type, float> predictions = GetPredictedUnits();
         
-        Dictionary<Units.Type, float> predictions  = GetWeights();
+        Modifiers.Type dayNight = Modifiers.GetDayNight();
+        Modifiers.Type weather = Modifiers.GetWeather();
+        Modifiers.Type terrain = Modifiers.GetTerrain(controller.playerIndex);
+        
         if (predictions == null)
         {
-            List<Units.Type> handUnits = controller.GetHeldUnits().ToList();
-            int rand = Random.Shared.Next(0, handUnits.Count);
-            Units.Type randUnit = handUnits[rand];
-            return randUnit;
-        }
-        
-        foreach (var (unit, score) in predictions)
-        {
-            if (score > bestScore)
+            Dictionary<Units.Type, float> bestUnits = new(); 
+            
+            foreach (var unit in controller.GetHeldUnits())
             {
-                predictedUnit = unit;
-                bestScore = score;
+                UnitData data = UnitRegistry.GetData(unit);
+                float baseDamage = data.damage;
+
+                float multiplier = 1.0f;
+            
+                if (data.buffnerfs.ContainsKey(dayNight))
+                    multiplier += data.buffnerfs[dayNight] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+                if (data.buffnerfs.ContainsKey(weather))
+                    multiplier += data.buffnerfs[weather] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+                if (data.buffnerfs.ContainsKey(terrain))
+                    multiplier += data.buffnerfs[terrain] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+        
+                float damage = baseDamage * multiplier;
+                bestUnits.Add(unit, damage);
             }
+            
+            bestUnits = bestUnits
+                .OrderByDescending(kvp => kvp.Value)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            
+            Debug.Print("AI predictions:");
+            foreach (var (unit, damage) in bestUnits)
+            {
+                Debug.Print("\t" + unit.ToString() + ": " + damage);
+            }
+            
+            return bestUnits.Keys.First();
         }
         
-        List<Units.Type> bestUnits = UnitRegistry.GetWeaknesses(predictedUnit);
-        if (bestUnits == null || bestUnits.Count <= 0)
-            return predictedUnit;
+        Dictionary<Units.Type, Dictionary<Units.Type, float>> bestUnitsAgainstOpponent = new(); 
         
-        bool unitFound = false;
-        Units.Type bestUnit = Units.Type.None;
-        foreach (Units.Type unit in bestUnits)
+        foreach (var (predicted, score) in predictions)
         {
-            if (controller.GetHeldUnits().Contains(unit))
+            bestUnitsAgainstOpponent.Add(predicted, new Dictionary<Units.Type, float>());
+            
+            foreach (var unit in controller.GetHeldUnits())
             {
-                bestUnit = unit;
-                unitFound = true;
-                break;
+                UnitData data = UnitRegistry.GetData(unit);
+                float baseDamage = data.damage;
+
+                float multiplier = 1.0f;
+                
+                if (data.buffnerfs.ContainsKey(dayNight))
+                    multiplier += data.buffnerfs[dayNight] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+                if (data.buffnerfs.ContainsKey(weather))
+                    multiplier += data.buffnerfs[weather] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+                if (data.buffnerfs.ContainsKey(terrain))
+                    multiplier += data.buffnerfs[terrain] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+
+                foreach (var strongAgainst in data.strengths)
+                {
+                    if (strongAgainst == predicted)
+                    {
+                        multiplier += 0.25f;
+                    }
+                }
+                
+                foreach (var weakAgainst in data.weaknesses)
+                {
+                    if (weakAgainst == predicted)
+                    {
+                        multiplier += -0.25f;
+                    }
+                }
+            
+                float damage = baseDamage * (multiplier + (score*0.5f));
+                bestUnitsAgainstOpponent[predicted].Add(unit, damage);
             }
         }
 
-        if (!unitFound)
+        foreach (var predicted in bestUnitsAgainstOpponent.Keys.ToList())
         {
-            List<Units.Type> handUnits = controller.GetHeldUnits().ToList();
-            int rand = Random.Shared.Next(0, handUnits.Count);
-            Units.Type randUnit = handUnits[rand];
-            return randUnit;
+            bestUnitsAgainstOpponent[predicted] = bestUnitsAgainstOpponent[predicted]
+                .OrderByDescending(kvp => kvp.Value)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
+        
+        Debug.Print("AI predictions:");
+        foreach (var (predicted, dict) in bestUnitsAgainstOpponent)
+        {
+            Debug.Print("\tFor Opponent Unit: " + predicted);
+            foreach (var (unit, damage) in dict)
+            {
+                Debug.Print("\t\t" + unit.ToString() + ": " + damage);
+            }
+        }
+        
+        Units.Type bestUnit = bestUnitsAgainstOpponent.Values.First().Keys.First();
+        
+        return bestUnit;
+    }
+    
+    public Units.Type GetBestMoveRand()
+    {
+        if (controller.GetHeldUnits().Count <= 0)
+            return Units.Type.None;
+        
+        Dictionary<Units.Type, float> predictions = GetPredictedUnits();
+        
+        Modifiers.Type dayNight = Modifiers.GetDayNight();
+        Modifiers.Type weather = Modifiers.GetWeather();
+        Modifiers.Type terrain = Modifiers.GetTerrain(controller.playerIndex);
+        
+        if (predictions == null)
+        {
+            Dictionary<Units.Type, float> bestUnits = new(); 
+            
+            foreach (var unit in controller.GetHeldUnits())
+            {
+                UnitData data = UnitRegistry.GetData(unit);
+                float baseDamage = data.damage;
+
+                float multiplier = 1.0f;
+            
+                if (data.buffnerfs.ContainsKey(dayNight))
+                    multiplier += data.buffnerfs[dayNight] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+                if (data.buffnerfs.ContainsKey(weather))
+                    multiplier += data.buffnerfs[weather] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+                if (data.buffnerfs.ContainsKey(terrain))
+                    multiplier += data.buffnerfs[terrain] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+        
+                float damage = baseDamage * multiplier;
+                bestUnits.Add(unit, damage);
+            }
+            
+            bestUnits = bestUnits
+                .OrderByDescending(kvp => kvp.Value)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            
+            Debug.Print("AI predictions:");
+            foreach (var (unit, damage) in bestUnits)
+            {
+                Debug.Print("\t" + unit.ToString() + ": " + damage);
+            }
+            
+            return bestUnits.Keys.First();
+        }
+        
+        float randPredicted = (float)Random.Shared.NextDouble();
+        float cumulative = 0f;
+        Units.Type rolledPrediction = predictions.Keys.First();
+
+        foreach (var (predicted, score) in predictions)
+        {
+            cumulative += score;
+            if (randPredicted <= cumulative)
+            {
+                rolledPrediction = predicted;
+                break;
+            }
+        }
+        
+        Dictionary<Units.Type, float> damageAgainstRolled = new();
+
+        foreach (var unit in controller.GetHeldUnits())
+        {
+            UnitData data = UnitRegistry.GetData(unit);
+            float baseDamage = data.damage;
+
+            float multiplier = 1.0f;
+
+            if (data.buffnerfs.ContainsKey(dayNight))
+                multiplier += data.buffnerfs[dayNight] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+            if (data.buffnerfs.ContainsKey(weather))
+                multiplier += data.buffnerfs[weather] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+            if (data.buffnerfs.ContainsKey(terrain))
+                multiplier += data.buffnerfs[terrain] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+
+            foreach (var strongAgainst in data.strengths)
+                if (strongAgainst == rolledPrediction) multiplier += 0.25f;
+
+            foreach (var weakAgainst in data.weaknesses)
+                if (weakAgainst == rolledPrediction) multiplier -= 0.25f;
+
+            damageAgainstRolled.Add(unit, baseDamage * multiplier);
+        }
+
+        List<Units.Type> topUnits = damageAgainstRolled
+            .OrderByDescending(kvp => kvp.Value)
+            .Take(3)
+            .Select(kvp => kvp.Key)
+            .ToList();
+
+        Units.Type bestUnit = topUnits[Random.Shared.Next(0, topUnits.Count)];
+        
+        Debug.Print("AI predictions:");
+        Debug.Print("\tFor Opponent Unit: " + rolledPrediction);
+        foreach (var topUnit in topUnits)
+            Debug.Print("\t\t" + topUnit.ToString());
         
         return bestUnit;
     }
@@ -127,7 +284,7 @@ public class Memory
     public void PrintWeights()
     {
         Debug.Print("Weights:");
-        foreach (var (unit, weight) in GetWeights())
+        foreach (var (unit, weight) in GetPredictedUnits())
         {
             Debug.Print(unit + ": " + weight);
         }
@@ -136,7 +293,7 @@ public class Memory
     public void PrintMemory()
     {
         Debug.Print("Memory:");
-        List<Units.Type> rev = memory;
+        List<Units.Type> rev = new List<Units.Type>(memory);
         rev.Reverse();
         
         int count = 1;
@@ -147,9 +304,9 @@ public class Memory
         }
     }
     
-    public void PrintBestMove()
+    public void PrintMove(Units.Type unit)
     {
         Debug.Print( controller.name + "'s Best move:");
-        Debug.Print(GetBestMove().ToString());
+        Debug.Print(unit.ToString());
     }
 }

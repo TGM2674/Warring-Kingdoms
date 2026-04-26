@@ -10,7 +10,7 @@ script = ExtResource("1_ap2fa")
 nameLabel = NodePath("ProgressBar/Label")
 healthBar = NodePath("ProgressBar")
 isAI = true
-heldUnits = Array[int]([1, 2, 4])
+heldUnits = Array[int]([1, 4, 2, 3, 5])
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1475991740]
 offset_left = -163.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce3sscikanb3w"
-path="res://.godot/imported/Test.png-9d3f7a073de6c21868f31eacc213a2d7.ctex"
+uid="uid://bn1be7mvihp7w"
+path="res://.godot/imported/Cavalriesatk.png-2000c9706bab6b11b8f6137c8292598f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Test.png"
-dest_files=["res://.godot/imported/Test.png-9d3f7a073de6c21868f31eacc213a2d7.ctex"]
+source_file="res://Archetype/Cavalries/Cavalriesatk.png"
+dest_files=["res://.godot/imported/Cavalriesatk.png-2000c9706bab6b11b8f6137c8292598f.ctex"]
 
 [params]
 

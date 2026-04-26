@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Diagnostics;
-
 public partial class AI : UnitController
 {
     public override void ProcessTurn(double delta)
@@ -10,7 +6,7 @@ public partial class AI : UnitController
             return;
 
         chosenUnit = aiMemory.GetBestMove();
-        aiMemory.PrintBestMove();
+        aiMemory.PrintMove(chosenUnit);
         isReady = true;
     }
 }

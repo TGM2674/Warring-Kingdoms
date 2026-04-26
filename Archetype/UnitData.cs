@@ -7,6 +7,8 @@ public partial class UnitData : Resource
 {
     [Export]
     public PackedScene UnitScene = null;
+	[Export] 
+	public PackedScene AttackScene = null;
 	[Export]
 	public Units.Type unitName = Units.Type.Archers;
 	[Export]

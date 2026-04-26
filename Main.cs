@@ -17,8 +17,12 @@ public partial class Main : Node
     private Unit p1Unit = null;
     private Unit p2Unit = null;
 
-    private float waitClock = 0.5f;
+    private float waitClock = 1.5f;
     private float waitTimer = 0;
+
+    private Units.Type pendingPlayer1Unit = Units.Type.None;
+    private Units.Type pendingPlayer2Unit = Units.Type.None;
+    private bool damageApplied = false;
     
     int round = 1;
     
@@ -44,26 +48,28 @@ public partial class Main : Node
 
     public override void _Process(double delta)
     {
+        float halfWait = waitClock / 2f;
         if (waitTimer < waitClock)
         {
             waitTimer += (float)delta;
+
+            // Apply damage at the halfway point, same moment as the attack sprite swap
+
+            if (!damageApplied && waitTimer >= halfWait)
+            {
+                player1.TakeDamageFrom(pendingPlayer2Unit);
+                player2.TakeDamageFrom(pendingPlayer1Unit);
+                damageApplied = true;
+            }
+
             return;
         }
         if (waitTimer >= waitClock)
         {
-            if (p1Unit != null)
-            {
-                p1Unit.QueueFree();
-                p1Unit = null;
-            }
-
-            if (p2Unit != null)
-            {
-                p2Unit.QueueFree();
-                p2Unit = null;
-            }
+            if (p1Unit != null) { p1Unit.QueueFree(); p1Unit = null; }
+            if (p2Unit != null) { p2Unit.QueueFree(); p2Unit = null; }
         }
-        
+
         if (player1 == null || player2 == null)
             return;
 
@@ -91,15 +97,29 @@ public partial class Main : Node
         p2Unit.GlobalPosition = p2.GlobalPosition;
         p2Unit.FlipH = true;
 
+        if (player1UnitData.AttackScene != null)
+        {
+            Unit attackInstance = player1UnitData.AttackScene.Instantiate<Unit>();
+            p1Unit.SetAttack(attackInstance.Texture, halfWait);
+            attackInstance.Free();
+        }
+        if (player2UnitData.AttackScene != null)
+        {
+            Unit attackInstance = player2UnitData.AttackScene.Instantiate<Unit>();
+            p2Unit.SetAttack(attackInstance.Texture, halfWait);
+            attackInstance.Free();
+        }
+
+        // Store chosen units for deferred damage application
+        pendingPlayer1Unit = player1Unit;
+        pendingPlayer2Unit = player2Unit;
+        damageApplied = false;
+
         waitTimer = 0;
 
-        // Roll all modifiers for this round
         Modifiers.AdvanceDayNight();
         Modifiers.RollWeather();
         Modifiers.RollTerrain();
-        
-        player1.TakeDamageFrom(player2Unit);
-        player2.TakeDamageFrom(player1Unit);
         
         player1.ResetChosenUnit();
         player2.ResetChosenUnit();

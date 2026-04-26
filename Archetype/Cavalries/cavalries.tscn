@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cbxvspb7j0dg4"]
 
-[ext_resource type="Texture2D" uid="uid://ce3sscikanb3w" path="res://Test.png" id="1_2f3v5"]
+[ext_resource type="Texture2D" uid="uid://7t6kbvaonh3c" path="res://Archetype/Cavalries/Cavalries.png" id="1_33x8k"]
 [ext_resource type="Script" uid="uid://cdm37whr6symh" path="res://Archetype/Cavalries/Cavalries.cs" id="2_33x8k"]
 
 [node name="Cavalries" type="Sprite2D" unique_id=279391000]
-self_modulate = Color(1, 0, 0, 1)
-texture = ExtResource("1_2f3v5")
+scale = Vector2(4, 4)
+texture = ExtResource("1_33x8k")
 script = ExtResource("2_33x8k")

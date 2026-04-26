@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dawka6al12fnt"
-path="res://.godot/imported/Swordsmen.png-641b08d46a6144c461692f4ce92ef7f9.ctex"
+uid="uid://bk57jp1jkig8h"
+path="res://.godot/imported/Swordsmenatk.png-fd5f230f5e21355977f907dde96cc5f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Archetype/Swordsmen/Swordsmen.png"
-dest_files=["res://.godot/imported/Swordsmen.png-641b08d46a6144c461692f4ce92ef7f9.ctex"]
+source_file="res://Archetype/Swordsmen/Swordsmenatk.png"
+dest_files=["res://.godot/imported/Swordsmenatk.png-fd5f230f5e21355977f907dde96cc5f5.ctex"]
 
 [params]
 

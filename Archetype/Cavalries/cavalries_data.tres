@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://dfwnttlwmwivw"]
 
 [ext_resource type="Script" uid="uid://8hp3gx5gva5x" path="res://Archetype/UnitData.cs" id="1_e1wuk"]
+[ext_resource type="PackedScene" uid="uid://bukfwubsmt2hs" path="res://Archetype/Cavalries/cavalries_atk.tscn" id="1_ems4s"]
 [ext_resource type="PackedScene" uid="uid://cbxvspb7j0dg4" path="res://Archetype/Cavalries/cavalries.tscn" id="1_qgb1c"]
 
 [resource]
 script = ExtResource("1_e1wuk")
 UnitScene = ExtResource("1_qgb1c")
+AttackScene = ExtResource("1_ems4s")
 unitName = 4
 damage = 100.0
 strengths = Array[int]([1, 3])

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bukfwubsmt2hs"]
+
+[ext_resource type="Texture2D" uid="uid://bn1be7mvihp7w" path="res://Archetype/Cavalries/Cavalriesatk.png" id="1_hxg55"]
+[ext_resource type="Script" uid="uid://cdm37whr6symh" path="res://Archetype/Cavalries/Cavalries.cs" id="2_mp4hk"]
+
+[node name="Cavalries_atk" type="Sprite2D" unique_id=279391000]
+scale = Vector2(4, 4)
+texture = ExtResource("1_hxg55")
+script = ExtResource("2_mp4hk")

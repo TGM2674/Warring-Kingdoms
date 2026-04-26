@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b6mjxlyf2sm4l"]
+
+[ext_resource type="Texture2D" uid="uid://c8v05qntfjgkd" path="res://Archetype/Mages/Magesatk.png" id="1_nrp6d"]
+[ext_resource type="Script" uid="uid://27hlwia6bgxs" path="res://Archetype/Mages/Mages.cs" id="2_pqucs"]
+
+[node name="Mages_atk" type="Sprite2D" unique_id=256426055]
+scale = Vector2(4, 4)
+texture = ExtResource("1_nrp6d")
+script = ExtResource("2_pqucs")
