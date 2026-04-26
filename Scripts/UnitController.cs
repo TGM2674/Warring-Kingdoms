@@ -10,7 +10,7 @@ public partial class UnitController : Node
     [Export] private Label nameLabel = null;
     [Export] public ProgressBar healthBar = null;
     
-    private float maxHealth = 10000;
+    private float maxHealth = 5000;
     private float currentHealth = 1;
 
     [Export] private bool isAI = false;
@@ -37,7 +37,7 @@ public partial class UnitController : Node
 
     public void SetAI(bool value) => isAI = value;
 
-    public void SetName(string value)
+    public void SetDisplayName(string value)
     {
         name = value;
         nameLabel.Text = name;
@@ -96,7 +96,7 @@ public partial class UnitController : Node
 
     private float GetModifierValue(UnitData data, Modifiers.Type mod)
     {
-        if (mod == Modifiers.Type.None || !data.buffnerfs.ContainsKey(mod))
+        if (mod == Modifiers.Type.NoWeather || mod == Modifiers.Type.NoTerrain || !data.buffnerfs.ContainsKey(mod))
             return 0.0f;
         return (Modifiers.Effects)data.buffnerfs[mod] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
     }

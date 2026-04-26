@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://spanp5bjh74f"]
+
+[ext_resource type="Texture2D" uid="uid://htnk5boa1yyh" path="res://Environment/DayNight/Sun.png" id="1_qn5o7"]
+
+[node name="TheSun" type="Sprite2D" unique_id=2039667639]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qn5o7")

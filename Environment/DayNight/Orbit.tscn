@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dchmnke88ir2f"]
+
+[ext_resource type="Script" uid="uid://d3ml65bk6gov4" path="res://Environment/DayNight/DayNight.cs" id="1_kiho2"]
+[ext_resource type="PackedScene" uid="uid://spanp5bjh74f" path="res://Environment/DayNight/TheSun.tscn" id="2_bqve3"]
+[ext_resource type="PackedScene" uid="uid://rmiymksaveo5" path="res://Environment/DayNight/TheMoon.tscn" id="3_2gemp"]
+
+[node name="Orbit" type="Node2D" unique_id=1317151602 node_paths=PackedStringArray("sun", "moon")]
+script = ExtResource("1_kiho2")
+sun = NodePath("TheSun")
+moon = NodePath("TheMoon")
+
+[node name="TheSun" parent="." unique_id=2039667639 instance=ExtResource("2_bqve3")]
+position = Vector2(36.750004, -36.750004)
+
+[node name="TheMoon" parent="." unique_id=2043623513 instance=ExtResource("3_2gemp")]
+position = Vector2(37, -34)

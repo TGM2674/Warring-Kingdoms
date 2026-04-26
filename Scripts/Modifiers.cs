@@ -12,22 +12,23 @@ public class Modifiers
     
     public enum Type
     {
-        None,
         Day,
         Night,
         Raining,
         Snowing,
+        NoWeather,
         HighGround,
-        Swamp
+        Swamp,
+        NoTerrain
     }
 
     // Global modifiers (same for both players)
     private static Type activeDayNight = Type.Day;
-    private static Type activeWeather = Type.None;
+    private static Type activeWeather = Type.NoWeather;
 
     // Per-player terrain
-    private static Type player1Terrain = Type.None;
-    private static Type player2Terrain = Type.None;
+    private static Type player1Terrain = Type.NoTerrain;
+    private static Type player2Terrain = Type.NoTerrain;
 
     // Day/Night — always alternates, no randomness needed
     public static void AdvanceDayNight()
@@ -38,8 +39,8 @@ public class Modifiers
     public static Type GetDayNight() => activeDayNight;
 
     // Weather — Raining, Snowing, or None, but not the same as last turn
-    private static Type lastWeather = Type.None;
-    private static readonly Type[] weatherPool = { Type.None, Type.Raining, Type.Snowing };
+    private static Type lastWeather = Type.NoWeather;
+    private static readonly Type[] weatherPool = { Type.NoWeather, Type.Raining, Type.Snowing };
 
     public static void RollWeather()
     {
@@ -55,9 +56,9 @@ public class Modifiers
     public static Type GetWeather() => activeWeather;
 
     // Terrain — HighGround, Swamp, or None, but not the same as last turn per player
-    private static readonly Type[] terrainPool = { Type.None, Type.HighGround, Type.Swamp };
-    private static Type lastPlayer1Terrain = Type.None;
-    private static Type lastPlayer2Terrain = Type.None;
+    private static readonly Type[] terrainPool = { Type.NoTerrain, Type.HighGround, Type.Swamp };
+    private static Type lastPlayer1Terrain = Type.NoTerrain;
+    private static Type lastPlayer2Terrain = Type.NoTerrain;
 
     public static void RollTerrain()
     {

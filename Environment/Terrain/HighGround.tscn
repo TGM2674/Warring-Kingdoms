@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cle732gagor48"]
+
+[ext_resource type="Texture2D" uid="uid://bpu373jks8k5g" path="res://Environment/Terrain/Highground.png" id="1_juwtw"]
+
+[node name="HighGround" type="Sprite2D" unique_id=1640572960]
+scale = Vector2(5, 5)
+texture = ExtResource("1_juwtw")
+offset = Vector2(0, 47)

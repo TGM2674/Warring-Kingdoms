@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b6xla1qa47lub"]
+
+[ext_resource type="Texture2D" uid="uid://cdfn8bg51yel6" path="res://Environment/Terrain/Swamp.png" id="1_y558v"]
+
+[node name="Swamp" type="Sprite2D" unique_id=773890820]
+scale = Vector2(5, 5)
+texture = ExtResource("1_y558v")
+offset = Vector2(0, 60)

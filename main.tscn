@@ -10,8 +10,10 @@
 [ext_resource type="Resource" uid="uid://bhfs7a112pqp8" path="res://Archetype/Mages/mages_data.tres" id="9_4c57u"]
 [ext_resource type="Resource" uid="uid://ib3ma5px6rq3" path="res://Archetype/Swordsmen/swordsmen_data.tres" id="10_dg77c"]
 [ext_resource type="Resource" uid="uid://b5bqelmjhm170" path="res://Archetype/Archers/archer_data.tres" id="10_efxa6"]
+[ext_resource type="PackedScene" uid="uid://dchmnke88ir2f" path="res://Environment/DayNight/Orbit.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://bp1im8boiosyk" path="res://Environment/Terrain/Terrain.tscn" id="12_dg77c"]
 
-[node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4")]
+[node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4", "dayNight", "terrainPlayer", "terrainEnemy")]
 script = ExtResource("1_ig7tw")
 playerScene = ExtResource("2_5vw27")
 aiScene = ExtResource("3_kek77")
@@ -19,6 +21,9 @@ p1 = NodePath("P1")
 p2 = NodePath("P2")
 p3 = NodePath("P3")
 p4 = NodePath("P4")
+dayNight = NodePath("Orbit")
+terrainPlayer = NodePath("TerrainPlayer")
+terrainEnemy = NodePath("TerrainEnemy")
 
 [node name="UnitRegistry" type="Node" parent="." unique_id=982062273]
 script = ExtResource("3_272bh")
@@ -38,3 +43,28 @@ position = Vector2(-483, -232)
 
 [node name="P4" type="Marker2D" parent="." unique_id=539623943]
 position = Vector2(168, -232)
+
+[node name="Sky" type="ColorRect" parent="." unique_id=110022666]
+offset_left = -634.0
+offset_top = -412.0
+offset_right = 798.0
+offset_bottom = 423.0
+
+[node name="PlanetOn" type="Marker2D" parent="." unique_id=1366526195]
+position = Vector2(-514, -275)
+
+[node name="PlanetOff" type="Marker2D" parent="." unique_id=1905531410]
+position = Vector2(514, 275)
+
+[node name="Orbit" parent="." unique_id=1317151602 node_paths=PackedStringArray("sky", "planetOn", "planetOff") instance=ExtResource("11_efxa6")]
+sky = NodePath("../Sky")
+planetOn = NodePath("../PlanetOn")
+planetOff = NodePath("../PlanetOff")
+
+[node name="TerrainPlayer" parent="." unique_id=321696862 node_paths=PackedStringArray("unitMarker") instance=ExtResource("12_dg77c")]
+unitMarker = NodePath("../P1")
+
+[node name="TerrainEnemy" parent="." unique_id=1473550113 node_paths=PackedStringArray("unitMarker") instance=ExtResource("12_dg77c")]
+unitMarker = NodePath("../P2")
+playerIndex = 2
+flipX = true

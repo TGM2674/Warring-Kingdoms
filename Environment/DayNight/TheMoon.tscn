@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://rmiymksaveo5"]
+
+[ext_resource type="Texture2D" uid="uid://8q3ivgulxyq4" path="res://Environment/DayNight/Moon.png" id="1_dy7a1"]
+
+[node name="TheMoon" type="Sprite2D" unique_id=2039667639]
+position = Vector2(86, 109)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_dy7a1")

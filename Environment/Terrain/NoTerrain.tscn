@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d0qo7ew8retir"]
+
+[ext_resource type="Texture2D" uid="uid://bkaqinvumh0ex" path="res://Environment/Terrain/NoTerrain.png" id="1_uy2fy"]
+
+[node name="NoTerrain" type="Sprite2D" unique_id=1503044467]
+scale = Vector2(5, 5)
+texture = ExtResource("1_uy2fy")
+offset = Vector2(0, 45)

@@ -13,12 +13,16 @@ public partial class Main : Node
     [Export] private Marker2D p2 = null;
     [Export] private Marker2D p3 = null;
     [Export] private Marker2D p4 = null;
-    
+    [Export] private DayNight dayNight = null;
+    [Export] private Terrain terrainPlayer = null;
+    [Export] private Terrain terrainEnemy = null;
     private Unit p1Unit = null;
     private Unit p2Unit = null;
-
+    
     private float waitClock = 1.5f;
     private float waitTimer = 0;
+    private bool roundActive = false;
+    private bool planetTransitioning = false;
 
     private Units.Type pendingPlayer1Unit = Units.Type.None;
     private Units.Type pendingPlayer2Unit = Units.Type.None;
@@ -30,8 +34,6 @@ public partial class Main : Node
     {
         player1 = playerScene.Instantiate<Player>();
         player2 = aiScene.Instantiate<AI>();
-
-        waitTimer = waitClock;
         
         player1.SetName("Player");
         player2.SetName("Enemy");
@@ -44,30 +46,51 @@ public partial class Main : Node
         
         AddChild(player1);
         AddChild(player2);
+
+        terrainPlayer.UpdateTerrain();
+        terrainEnemy.UpdateTerrain();
     }
 
     public override void _Process(double delta)
     {
         float halfWait = waitClock / 2f;
-        if (waitTimer < waitClock)
+
+        if (roundActive)
         {
-            waitTimer += (float)delta;
-
-            // Apply damage at the halfway point, same moment as the attack sprite swap
-
-            if (!damageApplied && waitTimer >= halfWait)
+            if (waitTimer < waitClock)
             {
-                player1.TakeDamageFrom(pendingPlayer2Unit);
-                player2.TakeDamageFrom(pendingPlayer1Unit);
-                damageApplied = true;
+                waitTimer += (float)delta;
+
+                if (!damageApplied && waitTimer >= halfWait)
+                {
+                    player1.TakeDamageFrom(pendingPlayer2Unit);
+                    player2.TakeDamageFrom(pendingPlayer1Unit);
+                    damageApplied = true;
+                }
+
+                return;
             }
 
-            return;
-        }
-        if (waitTimer >= waitClock)
-        {
+            // Unit animation finished — free units and start planet transition
             if (p1Unit != null) { p1Unit.QueueFree(); p1Unit = null; }
             if (p2Unit != null) { p2Unit.QueueFree(); p2Unit = null; }
+
+            roundActive = false;
+            planetTransitioning = true;
+            dayNight.Transition();
+            return;
+        }
+
+        if (planetTransitioning)
+        {
+            if (dayNight.IsTransitioning())
+                return;
+
+            planetTransitioning = false;
+
+            // Spawn terrain after planet transition finishes
+            terrainPlayer.UpdateTerrain();
+            terrainEnemy.UpdateTerrain();
         }
 
         if (player1 == null || player2 == null)
@@ -110,17 +133,17 @@ public partial class Main : Node
             attackInstance.Free();
         }
 
-        // Store chosen units for deferred damage application
         pendingPlayer1Unit = player1Unit;
         pendingPlayer2Unit = player2Unit;
         damageApplied = false;
 
         waitTimer = 0;
+        roundActive = true;
 
         Modifiers.AdvanceDayNight();
         Modifiers.RollWeather();
         Modifiers.RollTerrain();
-        
+
         player1.ResetChosenUnit();
         player2.ResetChosenUnit();
         
