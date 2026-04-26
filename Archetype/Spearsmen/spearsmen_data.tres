@@ -13,7 +13,8 @@ damage = 100.0
 strengths = Array[int]([4, 5])
 weaknesses = Array[int]([3, 1])
 buffnerfs = Dictionary[int, int]({
-0: 0,
+1: 0,
+4: 0,
 6: 1
 })
 metadata/_custom_type_script = "uid://8hp3gx5gva5x"

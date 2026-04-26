@@ -14,6 +14,7 @@ strengths = Array[int]([2, 1])
 weaknesses = Array[int]([4, 5])
 buffnerfs = Dictionary[int, int]({
 0: 0,
+4: 0,
 6: 1
 })
 metadata/_custom_type_script = "uid://8hp3gx5gva5x"

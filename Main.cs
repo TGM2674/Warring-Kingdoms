@@ -16,6 +16,7 @@ public partial class Main : Node
     [Export] private DayNight dayNight = null;
     [Export] private Terrain terrainPlayer = null;
     [Export] private Terrain terrainEnemy = null;
+
     private Unit p1Unit = null;
     private Unit p2Unit = null;
     
@@ -35,8 +36,8 @@ public partial class Main : Node
         player1 = playerScene.Instantiate<Player>();
         player2 = aiScene.Instantiate<AI>();
         
-        player1.SetName("Player");
-        player2.SetName("Enemy");
+        player1.SetDisplayName("Player");
+        player2.SetDisplayName("Enemy");
 
         player1.playerIndex = 1;
         player2.playerIndex = 2;
@@ -88,7 +89,10 @@ public partial class Main : Node
 
             planetTransitioning = false;
 
-            // Spawn terrain after planet transition finishes
+            Modifiers.AdvanceDayNight();
+            Modifiers.RollWeather();
+            Modifiers.RollTerrain();
+
             terrainPlayer.UpdateTerrain();
             terrainEnemy.UpdateTerrain();
         }
@@ -139,10 +143,6 @@ public partial class Main : Node
 
         waitTimer = 0;
         roundActive = true;
-
-        Modifiers.AdvanceDayNight();
-        Modifiers.RollWeather();
-        Modifiers.RollTerrain();
 
         player1.ResetChosenUnit();
         player2.ResetChosenUnit();
