@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Rush Kingdom"
-run/main_scene="uid://cwnpjse6rmbv6"
+config/name="Warring Kingdom"
+run/main_scene="uid://dnkpxahgykv3v"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

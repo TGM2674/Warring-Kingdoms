@@ -63,13 +63,12 @@ public partial class UnitController : Node
         else if (UnitRegistry.IsWeakAgainst(from, chosenUnit))
             strengthModifier = 0.75f;
 
-        float dayNightModifier = GetModifierValue(fromData, Modifiers.GetDayNight());
         float weatherModifier = GetModifierValue(fromData, Modifiers.GetWeather());
 
         int attackerIndex = playerIndex == 1 ? 2 : 1;
         float terrainModifier = GetModifierValue(fromData, Modifiers.GetTerrain(attackerIndex));
 
-        float totalDamage = baseDamage * (strengthModifier + dayNightModifier + weatherModifier + terrainModifier);
+        float totalDamage = baseDamage * (strengthModifier + weatherModifier + terrainModifier);
 
         currentHealth -= totalDamage;
         healthBar.Value = currentHealth;
@@ -78,7 +77,6 @@ public partial class UnitController : Node
         Debug.Print(attackerName + " dealt " + totalDamage + " damage. ("
             + "Base: " + baseDamage
             + ", Strength: " + strengthModifier
-            + ", DayNight: " + dayNightModifier
             + ", Weather: " + weatherModifier
             + ", Terrain: " + terrainModifier + ")");
 
@@ -91,9 +89,9 @@ public partial class UnitController : Node
 
     private float GetModifierValue(UnitData data, Modifiers.Type mod)
     {
-        if (mod == Modifiers.Type.NoWeather || mod == Modifiers.Type.NoTerrain || !data.buffnerfs.ContainsKey(mod))
+        if (mod == Modifiers.Type.NoWeather || mod == Modifiers.Type.NoTerrain)
             return 0.0f;
-        return (Modifiers.Effects)data.buffnerfs[mod] == Modifiers.Effects.Buff ? 0.25f : -0.25f;
+        return data.buffs.Contains(mod) ? 0.25f : 0.0f;
     }
     
     public virtual void ProcessTurn(double delta) {}

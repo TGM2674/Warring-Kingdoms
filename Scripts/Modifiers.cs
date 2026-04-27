@@ -4,16 +4,8 @@ using System.Collections.Generic;
 
 public class Modifiers
 {
-    public enum Effects
-    {
-        Buff,
-        Nerf
-    }
-    
     public enum Type
     {
-        Day,
-        Night,
         Raining,
         Snowing,
         NoWeather,
@@ -21,24 +13,14 @@ public class Modifiers
         Swamp,
         NoTerrain
     }
+    private static bool isDay = true;
+    public static void AdvanceDayNight() => isDay = !isDay;
+    public static bool IsDay() => isDay;
 
-    // Global modifiers (same for both players)
-    private static Type activeDayNight = Type.Day;
     private static Type activeWeather = Type.NoWeather;
-
-    // Per-player terrain
     private static Type player1Terrain = Type.NoTerrain;
     private static Type player2Terrain = Type.NoTerrain;
 
-    // Day/Night — always alternates, no randomness needed
-    public static void AdvanceDayNight()
-    {
-        activeDayNight = activeDayNight == Type.Day ? Type.Night : Type.Day;
-    }
-
-    public static Type GetDayNight() => activeDayNight;
-
-    // Weather — Raining, Snowing, or None, but not the same as last turn
     private static Type lastWeather = Type.NoWeather;
     private static readonly Type[] weatherPool = { Type.NoWeather, Type.Raining, Type.Snowing };
 
@@ -55,7 +37,6 @@ public class Modifiers
 
     public static Type GetWeather() => activeWeather;
 
-    // Terrain — HighGround, Swamp, or None, but not the same as last turn per player
     private static readonly Type[] terrainPool = { Type.NoTerrain, Type.HighGround, Type.Swamp };
     private static Type lastPlayer1Terrain = Type.NoTerrain;
     private static Type lastPlayer2Terrain = Type.NoTerrain;

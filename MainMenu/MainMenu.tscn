@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dnkpxahgykv3v"]
+
+[ext_resource type="Script" uid="uid://dqks6rcqbu152" path="res://MainMenu/MainMenu.cs" id="1_otibh"]
+
+[node name="MainMenu" type="Node2D" unique_id=1440527072 node_paths=PackedStringArray("playButton", "exitButton")]
+script = ExtResource("1_otibh")
+playButton = NodePath("ButtonContainer/Play")
+exitButton = NodePath("ButtonContainer/Exit")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1742684600]
+
+[node name="DescriptionBox" type="PanelContainer" parent="." unique_id=1752714073]
+custom_minimum_size = Vector2(400, 150)
+offset_left = 335.0
+offset_top = 308.0
+offset_right = 819.0
+offset_bottom = 458.0
+
+[node name="Description" type="Label" parent="DescriptionBox" unique_id=2038794865]
+layout_mode = 2
+text = "The neighboring kingdom
+has declared war upon us! General, you must
+command our army and stop their advance!
+Be careful, as their army can be adaptive to our formation.
+Think you can beat them? "
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=2113456299]
+offset_left = 551.0
+offset_top = 550.0
+offset_right = 598.0
+offset_bottom = 632.0
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="ButtonContainer" unique_id=886654221]
+layout_mode = 2
+text = "PLAY"
+
+[node name="Exit" type="Button" parent="ButtonContainer" unique_id=46265742]
+layout_mode = 2
+text = "EXIT"

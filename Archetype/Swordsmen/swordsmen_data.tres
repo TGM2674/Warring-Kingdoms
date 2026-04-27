@@ -12,9 +12,5 @@ unitName = 3
 damage = 100.0
 strengths = Array[int]([2, 1])
 weaknesses = Array[int]([4, 5])
-buffnerfs = Dictionary[int, int]({
-0: 0,
-4: 0,
-6: 1
-})
+buffs = Array[int]([2, 5])
 metadata/_custom_type_script = "uid://8hp3gx5gva5x"
