@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dgaej1vd3vk7j"]
+
+[ext_resource type="Script" uid="uid://dbw5uv12p5o26" path="res://UI/Cards/Cards.cs" id="1_hyx3y"]
+[ext_resource type="PackedScene" uid="uid://c2efsilb380hu" path="res://UI/Cards/Card.tscn" id="2_fb1qb"]
+
+[node name="Cards" type="HBoxContainer" unique_id=501086255 node_paths=PackedStringArray("card1", "card2", "card3", "card4", "card5")]
+script = ExtResource("1_hyx3y")
+card1 = NodePath("Card1")
+card2 = NodePath("Card2")
+card3 = NodePath("Card3")
+card4 = NodePath("Card4")
+card5 = NodePath("Card5")
+
+[node name="Card1" parent="." unique_id=439827958 instance=ExtResource("2_fb1qb")]
+layout_mode = 2
+
+[node name="Card2" parent="." unique_id=1795097978 instance=ExtResource("2_fb1qb")]
+layout_mode = 2
+
+[node name="Card3" parent="." unique_id=1404316281 instance=ExtResource("2_fb1qb")]
+layout_mode = 2
+
+[node name="Card4" parent="." unique_id=914668667 instance=ExtResource("2_fb1qb")]
+layout_mode = 2
+
+[node name="Card5" parent="." unique_id=625912073 instance=ExtResource("2_fb1qb")]
+layout_mode = 2

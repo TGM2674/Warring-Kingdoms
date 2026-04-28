@@ -3,40 +3,30 @@ using System.Diagnostics;
 
 public partial class Player : UnitController
 {
+    public void SelectUnit(Units.Type unit)
+    {
+        if (isReady)
+            return;
+
+        chosenUnit = unit;
+        Debug.Print(name + " Chose: " + chosenUnit);
+        isReady = true;
+    }
+
     public override void ProcessTurn(double delta)
     {
         if (isReady)
             return;
 
         if (Input.IsActionJustPressed("1"))
-        {
-            chosenUnit = Units.Type.Archers;
-            Debug.Print(name + " Chose: " + chosenUnit);
-            isReady = true;
-        }
+            SelectUnit(Units.Type.Archers);
         else if (Input.IsActionJustPressed("2"))
-        {
-            chosenUnit = Units.Type.Cavalries;
-            Debug.Print(name + " Chose: " + chosenUnit);
-            isReady = true;
-        }
+            SelectUnit(Units.Type.Cavalries);
         else if (Input.IsActionJustPressed("3"))
-        {
-            chosenUnit = Units.Type.Spearsmen;
-            Debug.Print(name + " Chose: " + chosenUnit);
-            isReady = true;
-        }
+            SelectUnit(Units.Type.Spearsmen);
         else if (Input.IsActionJustPressed("4"))
-        {
-            chosenUnit = Units.Type.Swordsmen;
-            Debug.Print(name + " Chose: " + chosenUnit);
-            isReady = true;
-        }
+            SelectUnit(Units.Type.Swordsmen);
         else if (Input.IsActionJustPressed("5"))
-        {
-            chosenUnit = Units.Type.Mages;
-            Debug.Print(name + " Chose: " + chosenUnit);
-            isReady = true;
-        }
+            SelectUnit(Units.Type.Mages);
     }
 }

@@ -17,6 +17,7 @@ public partial class Main : Node
     [Export] private Terrain terrainPlayer = null;
     [Export] private Terrain terrainEnemy = null;
     [Export] private Weather weather = null;
+    [Export] private Cards cards = null;
 
     private Unit p1Unit = null;
     private Unit p2Unit = null;
@@ -52,6 +53,15 @@ public partial class Main : Node
         terrainPlayer.UpdateTerrain();
         terrainEnemy.UpdateTerrain();
         weather.UpdateWeather();
+        cards.UpdateBuffs();
+        cards.SetGreyedOut(false);
+        cards.CardClicked += OnCardClicked;
+    }
+    
+    private void OnCardClicked(Units.Type unit)
+    {
+        if (player1 is Player humanPlayer)
+            humanPlayer.SelectUnit(unit);
     }
 
     public override void _Process(double delta)
@@ -70,9 +80,11 @@ public partial class Main : Node
                     player2.TakeDamageFrom(pendingPlayer1Unit);
                     damageApplied = true;
 
-                    // Reset AFTER damage is calculated
                     player1.ResetChosenUnit();
                     player2.ResetChosenUnit();
+
+                    // Grey out cards when fight starts
+                    cards.SetGreyedOut(true);
                 }
 
                 return;
@@ -101,6 +113,10 @@ public partial class Main : Node
             terrainPlayer.UpdateTerrain();
             terrainEnemy.UpdateTerrain();
             weather.UpdateWeather();
+
+            // Update buffs and ungrey cards after planet transition
+            cards.UpdateBuffs();
+            cards.SetGreyedOut(false);
         }
 
         if (player1 == null || player2 == null)
@@ -150,7 +166,6 @@ public partial class Main : Node
         waitTimer = 0;
         roundActive = true;
 
-        player1.aiMemory.AddMove(player2Unit);
         player2.aiMemory.AddMove(player1Unit);
         
         player1.isReady = false;

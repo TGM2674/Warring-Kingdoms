@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Memory
 {
-    public int SIZE = 20;
+    public int SIZE = 50;
     public int LEN = 2;
 
     private const float MATCHUP_WEIGHT = 1.0f;

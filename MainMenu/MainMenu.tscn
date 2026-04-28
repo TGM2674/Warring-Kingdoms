@@ -1,20 +1,43 @@
 [gd_scene format=3 uid="uid://dnkpxahgykv3v"]
 
 [ext_resource type="Script" uid="uid://dqks6rcqbu152" path="res://MainMenu/MainMenu.cs" id="1_otibh"]
+[ext_resource type="Texture2D" uid="uid://bodc4mhs7hvdw" path="res://MainMenu/Background.png" id="2_cruaa"]
 
-[node name="MainMenu" type="Node2D" unique_id=1440527072 node_paths=PackedStringArray("playButton", "exitButton")]
+[node name="MainMenu" type="Control" unique_id=72864737 node_paths=PackedStringArray("playButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_otibh")
 playButton = NodePath("ButtonContainer/Play")
 exitButton = NodePath("ButtonContainer/Exit")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1742684600]
+[node name="Background" type="TextureRect" parent="." unique_id=533662831]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cruaa")
+expand_mode = 3
 
 [node name="DescriptionBox" type="PanelContainer" parent="." unique_id=1752714073]
 custom_minimum_size = Vector2(400, 150)
-offset_left = 335.0
-offset_top = 308.0
-offset_right = 819.0
-offset_bottom = 458.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = 10.0
+offset_right = 242.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Description" type="Label" parent="DescriptionBox" unique_id=2038794865]
 layout_mode = 2
@@ -26,10 +49,18 @@ Think you can beat them? "
 horizontal_alignment = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=2113456299]
-offset_left = 551.0
-offset_top = 550.0
-offset_right = 598.0
-offset_bottom = 632.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.5
+offset_top = -130.0
+offset_right = 23.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_constants/separation = 20
 
 [node name="Play" type="Button" parent="ButtonContainer" unique_id=886654221]

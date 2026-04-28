@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c2efsilb380hu"]
+
+[ext_resource type="Script" uid="uid://b17qigk124qjc" path="res://UI/Cards/Card.cs" id="1_jlsxx"]
+
+[node name="Card" type="PanelContainer" unique_id=439827958 node_paths=PackedStringArray("cardSprite", "numberLabel", "buff1", "buff2")]
+script = ExtResource("1_jlsxx")
+cardSprite = NodePath("VBoxContainer/CardSprite")
+numberLabel = NodePath("VBoxContainer/Label")
+buff1 = NodePath("HBoxContainer/x1 buff")
+buff2 = NodePath("HBoxContainer/x2 buff")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=134756264]
+layout_mode = 2
+
+[node name="CardSprite" type="TextureRect" parent="VBoxContainer" unique_id=327200373]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+expand_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1390178463]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1039539562]
+layout_mode = 2
+
+[node name="x1 buff" type="Polygon2D" parent="HBoxContainer" unique_id=788429948]
+
+[node name="x2 buff" type="Polygon2D" parent="HBoxContainer" unique_id=1046042953]

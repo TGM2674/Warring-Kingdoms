@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://dchmnke88ir2f" path="res://Environment/DayNight/Orbit.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bp1im8boiosyk" path="res://Environment/Terrain/Terrain.tscn" id="12_dg77c"]
 [ext_resource type="PackedScene" uid="uid://c58nfsn7l7fpx" path="res://Environment/Weather/Weather.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://dgaej1vd3vk7j" path="res://UI/Cards/Cards.tscn" id="14_w48qg"]
 
-[node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4", "dayNight", "terrainPlayer", "terrainEnemy", "weather")]
+[node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4", "dayNight", "terrainPlayer", "terrainEnemy", "weather", "cards")]
 script = ExtResource("1_ig7tw")
 playerScene = ExtResource("2_5vw27")
 aiScene = ExtResource("3_kek77")
@@ -26,6 +27,7 @@ dayNight = NodePath("Orbit")
 terrainPlayer = NodePath("TerrainPlayer")
 terrainEnemy = NodePath("TerrainEnemy")
 weather = NodePath("Weather")
+cards = NodePath("UI/Cards")
 
 [node name="UnitRegistry" type="Node" parent="." unique_id=982062273]
 script = ExtResource("3_272bh")
@@ -72,3 +74,17 @@ playerIndex = 2
 flipX = true
 
 [node name="Weather" parent="." unique_id=1654538707 instance=ExtResource("13_ycdy4")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1425653244]
+
+[node name="Cards" parent="UI" unique_id=501086255 instance=ExtResource("14_w48qg")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.5
+offset_top = -27.0
+offset_right = 10.5
+grow_horizontal = 2
+grow_vertical = 0

@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class MainMenu : Node2D
+public partial class MainMenu : Control
 {
     [Export] private Button playButton = null;
     [Export] private Button exitButton = null;
