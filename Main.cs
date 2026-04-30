@@ -18,6 +18,7 @@ public partial class Main : Node
     [Export] private Terrain terrainEnemy = null;
     [Export] private Weather weather = null;
     [Export] private Cards cards = null;
+    [Export] private AudioStreamPlayer bgm = null;
 
     private Unit p1Unit = null;
     private Unit p2Unit = null;
@@ -30,7 +31,8 @@ public partial class Main : Node
     private Units.Type pendingPlayer1Unit = Units.Type.None;
     private Units.Type pendingPlayer2Unit = Units.Type.None;
     private bool damageApplied = false;
-    
+    private bool gameOver = false;
+
     int round = 1;
     
     public override void _Ready()
@@ -57,15 +59,34 @@ public partial class Main : Node
         cards.SetGreyedOut(false);
         cards.CardClicked += OnCardClicked;
     }
-    
+
     private void OnCardClicked(Units.Type unit)
     {
         if (player1 is Player humanPlayer)
             humanPlayer.SelectUnit(unit);
     }
 
+    private void CheckGameOver()
+    {
+        if (player1.GetCurrentHealth() <= 0)
+        {
+            gameOver = true;
+            if (bgm != null) bgm.Stop();
+            GetTree().ChangeSceneToFile("res://EndGame/Defeat.tscn");
+        }
+        else if (player2.GetCurrentHealth() <= 0)
+        {
+            gameOver = true;
+            if (bgm != null) bgm.Stop();
+            GetTree().ChangeSceneToFile("res://EndGame/Victory.tscn");
+        }
+    }
+
     public override void _Process(double delta)
     {
+        if (gameOver)
+            return;
+            
         float halfWait = waitClock / 2f;
 
         if (roundActive)
@@ -83,8 +104,8 @@ public partial class Main : Node
                     player1.ResetChosenUnit();
                     player2.ResetChosenUnit();
 
-                    // Grey out cards when fight starts
                     cards.SetGreyedOut(true);
+                    CheckGameOver();
                 }
 
                 return;
@@ -114,7 +135,6 @@ public partial class Main : Node
             terrainEnemy.UpdateTerrain();
             weather.UpdateWeather();
 
-            // Update buffs and ungrey cards after planet transition
             cards.UpdateBuffs();
             cards.SetGreyedOut(false);
         }
@@ -165,6 +185,7 @@ public partial class Main : Node
 
         waitTimer = 0;
         roundActive = true;
+        round++;
 
         player2.aiMemory.AddMove(player1Unit);
         

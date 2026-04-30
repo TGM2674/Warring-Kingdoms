@@ -45,7 +45,24 @@ text = "The neighboring kingdom
 has declared war upon us! General, you must
 command our army and stop their advance!
 Be careful, as their army can be adaptive to our formation.
-Think you can beat them? "
+Think you can beat them? Good luck, General!"
+horizontal_alignment = 1
+
+[node name="DescriptionBox2" type="PanelContainer" parent="." unique_id=89447901]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -242.0
+offset_right = 242.0
+offset_bottom = 150.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="DescriptionBox2" unique_id=175167275]
+layout_mode = 2
+theme_override_font_sizes/font_size = 43
+text = "WARRING KINGDOM"
 horizontal_alignment = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=2113456299]

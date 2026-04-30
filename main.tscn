@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bp1im8boiosyk" path="res://Environment/Terrain/Terrain.tscn" id="12_dg77c"]
 [ext_resource type="PackedScene" uid="uid://c58nfsn7l7fpx" path="res://Environment/Weather/Weather.tscn" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://dgaej1vd3vk7j" path="res://UI/Cards/Cards.tscn" id="14_w48qg"]
+[ext_resource type="AudioStream" uid="uid://co4xop4safxb0" path="res://BGM.mp3" id="15_vivmo"]
 
 [node name="Main" type="Node" unique_id=1494482777 node_paths=PackedStringArray("p1", "p2", "p3", "p4", "dayNight", "terrainPlayer", "terrainEnemy", "weather", "cards")]
 script = ExtResource("1_ig7tw")
@@ -88,3 +89,9 @@ offset_top = -27.0
 offset_right = 10.5
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1811005875]
+stream = ExtResource("15_vivmo")
+volume_db = -20.0
+autoplay = true
+parameters/looping = true

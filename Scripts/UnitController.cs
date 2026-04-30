@@ -10,7 +10,7 @@ public partial class UnitController : Node
     [Export] private Label nameLabel = null;
     [Export] public ProgressBar healthBar = null;
     
-    private float maxHealth = 5000;
+    private float maxHealth = 4000;
     private float currentHealth = 1;
 
     [Export] private bool isAI = false;

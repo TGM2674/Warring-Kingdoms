@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dnqhbfwuf7rcx"]
+
+[ext_resource type="Script" uid="uid://cjcv6l6x8qbdg" path="res://EndGame/EndGame.cs" id="1_w7ake"]
+
+[node name="Defeat" type="Control" unique_id=1577627992 node_paths=PackedStringArray("resultLabel", "playAgainButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w7ake")
+resultLabel = NodePath("PanelContainer/VBoxContainer/ResultLabel")
+playAgainButton = NodePath("PanelContainer/VBoxContainer/PlayAgain")
+exitButton = NodePath("PanelContainer/VBoxContainer/Exit")
+resultText = "Defeat..."
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=537492858]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2068006052]
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=788413311]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1216907533]
+layout_mode = 2
+text = "Play Again"
+
+[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=833060373]
+layout_mode = 2
+text = "Exit"

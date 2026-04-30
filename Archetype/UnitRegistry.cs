@@ -10,6 +10,7 @@ public partial class UnitRegistry : Node
 
     public override void _Ready()
     {
+        unitsInternal.Clear();
         foreach (UnitData unit in units)
         {
             unitsInternal.Add(unit.unitName, unit);
