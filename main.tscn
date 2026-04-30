@@ -92,6 +92,6 @@ grow_vertical = 0
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1811005875]
 stream = ExtResource("15_vivmo")
-volume_db = -20.0
+volume_db = -35.0
 autoplay = true
 parameters/looping = true

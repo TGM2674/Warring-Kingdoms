@@ -27,16 +27,18 @@ public partial class Main : Node
     private float waitTimer = 0;
     private bool roundActive = false;
     private bool planetTransitioning = false;
+    private bool gameOver = false;
 
     private Units.Type pendingPlayer1Unit = Units.Type.None;
     private Units.Type pendingPlayer2Unit = Units.Type.None;
     private bool damageApplied = false;
-    private bool gameOver = false;
-
+    
     int round = 1;
     
     public override void _Ready()
     {
+        Modifiers.Reset();
+
         player1 = playerScene.Instantiate<Player>();
         player2 = aiScene.Instantiate<AI>();
         
@@ -86,7 +88,7 @@ public partial class Main : Node
     {
         if (gameOver)
             return;
-            
+
         float halfWait = waitClock / 2f;
 
         if (roundActive)

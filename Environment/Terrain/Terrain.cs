@@ -12,7 +12,7 @@ public partial class Terrain : Node
     private PackedScene noTerrainScene = null;
 
     private Vector2 defaultMarkerPosition = Vector2.Zero;
-    private float highGroundOffset = 115f; // adjust this value in editor
+    private float highGroundOffset = 115f;
 
     public override void _Ready()
     {

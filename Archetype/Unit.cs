@@ -7,7 +7,6 @@ public partial class Unit : Sprite2D
     private float attackDelay = 0f;
     private bool hasAttacked = false;
 
-    // Called by Main.cs after spawning, passing the attack texture and when to swap
     public void SetAttack(Texture2D texture, float delay)
     {
         attackTexture = texture;

@@ -13,16 +13,31 @@ public class Modifiers
         Swamp,
         NoTerrain
     }
-    private static bool isDay = true;
-    public static void AdvanceDayNight() => isDay = !isDay;
-    public static bool IsDay() => isDay;
 
+    private static bool isDay = true;
     private static Type activeWeather = Type.NoWeather;
     private static Type player1Terrain = Type.NoTerrain;
     private static Type player2Terrain = Type.NoTerrain;
-
     private static Type lastWeather = Type.NoWeather;
+    private static Type lastPlayer1Terrain = Type.NoTerrain;
+    private static Type lastPlayer2Terrain = Type.NoTerrain;
+
     private static readonly Type[] weatherPool = { Type.NoWeather, Type.Raining, Type.Snowing };
+    private static readonly Type[] terrainPool = { Type.NoTerrain, Type.HighGround, Type.Swamp };
+
+    public static void Reset()
+    {
+        isDay = true;
+        activeWeather = Type.NoWeather;
+        lastWeather = Type.NoWeather;
+        player1Terrain = Type.NoTerrain;
+        player2Terrain = Type.NoTerrain;
+        lastPlayer1Terrain = Type.NoTerrain;
+        lastPlayer2Terrain = Type.NoTerrain;
+    }
+
+    public static void AdvanceDayNight() => isDay = !isDay;
+    public static bool IsDay() => isDay;
 
     public static void RollWeather()
     {
@@ -36,10 +51,6 @@ public class Modifiers
     }
 
     public static Type GetWeather() => activeWeather;
-
-    private static readonly Type[] terrainPool = { Type.NoTerrain, Type.HighGround, Type.Swamp };
-    private static Type lastPlayer1Terrain = Type.NoTerrain;
-    private static Type lastPlayer2Terrain = Type.NoTerrain;
 
     public static void RollTerrain()
     {
